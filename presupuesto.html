@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Presupuesto - Camisetas Cabrero</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        /* Estilos adicionales si es necesario */
+        .form-group {
+            margin-bottom: 1em;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 0.5em;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.5em;
+            font-size: 1em;
+        }
+
+        .form-group input[type="checkbox"] {
+            margin-right: 0.5em;
+        }
+
+        .form-group .error {
+            color: red;
+            font-size: 0.8em;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Camisetas Cabrero</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="productos.html">Productos</a></li>
+                <li><a href="presupuesto.html" class="active">Presupuesto</a></li>
+                <li><a href="contacto.html">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <h2>Presupuesto</h2>
+        <form id="formularioPresupuesto" action="#" method="POST" onsubmit="return validarFormulario()">
+            <div class="form-group">
+                <label for="nombre">Nombre completo:</label>
+                <input type="text" id="nombre" name="nombre" required>
+                <div id="error-nombre" class="error"></div>
+            </div>
+            <div class="form-group">
+                <label for="email">Correo electrónico:</label>
+                <input type="email" id="email" name="email" required>
+                <div id="error-email" class="error"></div>
+            </div>
+            <div class="form-group">
+                <label for="telefono">Teléfono:</label>
+                <input type="tel" id="telefono" name="telefono" required>
+                <div id="error-telefono" class="error"></div>
+            </div>
+            <div class="form-group">
+                <label for="solicitud">Solicite más información:</label>
+                <textarea id="solicitud" name="solicitud" rows="4" required></textarea>
+                <div id="error-solicitud" class="error"></div>
+            </div>
+            <div class="form-group">
+                <label>
+                    <input type="checkbox" id="politica" required>
+                    Acepto la política de privacidad
+                </label>
+                <div id="error-politica" class="error"></div>
+            </div>
+            <div class="form-group">
+                <label for="cantidad">Cantidad de camisetas:</label>
+                <input type="number" id="cantidad" name="cantidad" min="1" value="1" required>
+                <div id="error-cantidad" class="error"></div>
+            </div>
+            <div class="form-group">
+                <label for="precioUnitario">Precio unitario (€):</label>
+                <input type="number" id="precioUnitario" name="precioUnitario" value="50" step="0.01" required>
+                <div id="error-precioUnitario" class="error"></div>
+            </div>
+            <div class="form-group">
+                <label for="total">Total a pagar (€):</label>
+                <input type="text" id="total" name="total" readonly>
+            </div>
+            <button type="submit">Calcular Total</button>
+        </form>
+    </main>
+    <footer>
+        <p>© 2023 Camisetas Cabrero</p>
+        <div>
+            <a href="https://facebook.com"><img src="images/facebook.png" alt="Facebook" width="24" height="24"></a>
+            <a href="https://twitter.com"><img src="images/twitter.png" alt="Twitter" width="24" height="24"></a>
+        </div>
+        <div>
+            <p>C/Gardenia 68 Linares (Jaén)</p>
+            <a href="#">Aviso legal</a>
+        </div>
+    </footer>
+
+    <!-- Script para la validación del formulario y cálculo del total -->
+    <script>
+        function validarFormulario() {
+            var nombre = document.getElementById('nombre').value.trim();
+            var email = document.getElementById('email').value.trim();
+            var telefono = document.getElementById('telefono').value.trim();
+            var solicitud = document.getElementById('solicitud').value.trim();
+            var politica = document.getElementById('politica').checked;
+            var cantidad = parseInt(document.getElementById('cantidad').value);
+            var precioUnitario = parseFloat(document.getElementById('precioUnitario').value);
+
+            // Validar nombre
+            if (nombre === '') {
+                document.getElementById('error-nombre').textContent = 'Por favor, introduce tu nombre.';
+                return false;
+            } else {
+                document.getElementById('error-nombre').textContent = '';
+            }
+
+            // Validar email
+            if (email === '') {
+                document.getElementById('error-email').textContent = 'Por favor, introduce tu correo electrónico.';
+                return false;
+            } else {
+                document.getElementById('error-email').textContent = '';
+            }
+
+            // Validar teléfono
+            if (telefono === '') {
+                document.getElementById('error-telefono').textContent = 'Por favor, introduce tu teléfono.';
+                return false;
+            } else {
+                document.getElementById('error-telefono').textContent = '';
+            }
+
+            // Validar solicitud
+            if (solicitud === '') {
+                document.getElementById('error-solicitud').textContent = 'Por favor, describe tu solicitud.';
+                return false;
+            } else {
+                document.getElementById('error-solicitud').textContent = '';
+            }
+
+            // Validar política de privacidad
+            if (!politica) {
+                document.getElementById('error-politica').textContent = 'Debes aceptar la política de privacidad.';
+                return false;
+            } else {
+                document.getElementById('error-politica').textContent = '';
+            }
+
+            // Validar cantidad de camisetas
+            if (isNaN(cantidad) || cantidad < 1) {
+                document.getElementById('error-cantidad').textContent = 'La cantidad debe ser un número mayor que cero.';
+                return false;
+            } else {
+                document.getElementById('error-cantidad').textContent = '';
+            }
+
+            // Validar precio unitario
+            if (isNaN(precioUnitario) || precioUnitario <= 0) {
+                document.getElementById('error-precioUnitario').textContent = 'El precio unitario debe ser un número mayor que cero.';
+                return false;
+            } else {
+                document.getElementById('error-precioUnitario').textContent = '';
+            }
+
+            // Calcular el total a pagar
+            var total = cantidad * precioUnitario;
+
+            // Mostrar el total en el campo correspondiente
+            document.getElementById('total').value = total.toFixed(2);
+
+            return true; // Envía el formulario si pasa todas las validaciones
+        }
+    </script>
+</body>
+</html>

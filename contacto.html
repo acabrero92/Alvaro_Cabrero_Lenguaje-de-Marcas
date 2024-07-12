@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contacto - Camisetas Cabrero</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        /* Estilos adicionales si es necesario */
+        #map {
+            height: 400px;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Camisetas Cabrero</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="productos.html">Productos</a></li>
+                <li><a href="presupuesto.html">Presupuesto</a></li>
+                <li><a href="contacto.html" class="active">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <h2>Contacto</h2>
+        <p>C/Gardenia 68 Linares (Jaén)</p>
+        <div id="map"></div>
+    </main>
+    <footer>
+        <p>© 2023 Camisetas Cabrero</p>
+        <div>
+            <a href="https://facebook.com"><img src="images/facebook.png" alt="Facebook" width="24" height="24"></a>
+            <a href="https://twitter.com"><img src="images/twitter.png" alt="Twitter" width="24" height="24"></a>
+        </div>
+        <div>
+            <p>C/Gardenia 68 Linares (Jaén)</p>
+            <a href="#">Aviso legal</a>
+        </div>
+    </footer>
+
+    <!-- Script para integrar Google Maps -->
+    <script>
+        function initMap() {
+            var myLatLng = { lat: 38.094015, lng: -3.635591 }; // Coordenadas de la ubicación
+
+            var map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 15,
+                center: myLatLng
+            });
+
+            var marker = new google.maps.Marker({
+                position: myLatLng,
+                map: map,
+                title: 'Camisetas Cabrero - Linares'
+            });
+        }
+    </script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=TU_API_KEY&callback=initMap"></script>
+    <!-- Reemplaza TU_API_KEY con tu propia API Key -->
+</body>
+</html>
