@@ -1,16 +1,17 @@
-body, html {
-    height: 100%;
-    margin: 0;
+/* Estilos generales */
+body {
     font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
     display: flex;
     flex-direction: column;
+    min-height: 100vh; /* Asegura que el contenido ocupe al menos toda la altura de la ventana */
 }
 
 header {
-    background: #333;
-    color: #fff;
-    padding: 10px 0;
-    text-align: center;
+    background-color: #3bfa01;
+    color: #fffefe;
+    padding: 1em;
 }
 
 header nav ul {
@@ -20,37 +21,49 @@ header nav ul {
 
 header nav ul li {
     display: inline;
-    margin: 0 10px;
-}
-
-header nav ul li a {
-    color: #fff;
-    text-decoration: none;
-}
-
-header nav ul li a.active {
-    font-weight: bold;
+    margin-right: 20px;
 }
 
 main {
-    flex: 1;
     padding: 20px;
+    flex: 1; /* Permite que el contenido principal ocupe el espacio restante */
+    display: flex;
+    flex-direction: column;
 }
 
 footer {
-    background: #333;
-    color: #fff;
-    padding: 10px 0;
-    text-align: center;
-}
-
-footer div {
+    background-color: #3bfa01;
+    color: #fffefe;
+    padding: 1em;
     display: flex;
-    justify-content: center;
-    gap: 10px;
+    justify-content: space-between;
+    align-items: center;
 }
 
-footer a {
-    color: #fff;
-    text-decoration: none;
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 1200px; /* Ancho máximo para evitar que se extienda demasiado en pantallas grandes */
+    margin: 0 auto; /* Centra el contenido */
+}
+
+.social-icons {
+    display: flex;
+    align-items: center;
+}
+
+.social-icons a {
+    margin-right: 10px;
+}
+
+.social-icons img {
+    width: 24px;
+    height: 24px;
+}
+
+/* Estilos específicos para el mapa en contacto.html */
+#map {
+    height: 400px;
+    width: 100%;
 }
